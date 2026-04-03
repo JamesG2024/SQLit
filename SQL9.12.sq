@@ -1,0 +1,76 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/JamesG2024/SQLit/blob/main/SQL9.12.sq\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Wf5KrEb6vrkR"
+      },
+      "source": [
+        "# Welcome to Colab!"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Import file from your system\n",
+        "from google.colab import files\n",
+        "file = files.upload()\n",
+        "\n",
+        "\"\"\"***2. Connect with SQLite Database***\"\"\"\n",
+        "\n",
+        "# Connect with sqlite database\n",
+        "# Import necessary libraries\n",
+        "import sqlite3\n",
+        "\n",
+        "database = 'database.sqlite'\n",
+        "\n",
+        "conn = sqlite3.connect(database)\n",
+        "print('Opened data successfully')\n",
+        "\n",
+        "# Read SQL query for getting all the tables of database into a dataframe\n",
+        "import pandas as pd\n",
+        "tables = pd.read_sql(\"\"\"SELECT *\n",
+        "                        FROM sqlite_master\n",
+        "                        WHERE type='table';\"\"\", conn)\n",
+        "\n",
+        "tables\n",
+        "\n",
+        "# Read Table from the database into dataframe\n",
+        "matches = pd.read_sql(\"\"\"SELECT *\n",
+        "                        FROM Match;\"\"\", conn)\n",
+        "\n",
+        "# Print Table info\n",
+        "matches.info()"
+      ],
+      "metadata": {
+        "id": "cZiOKo0IBVS0"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "name": "Welcome To Colab",
+      "toc_visible": true,
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
